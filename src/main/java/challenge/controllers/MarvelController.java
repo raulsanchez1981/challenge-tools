@@ -1,5 +1,8 @@
 package challenge.controllers;
 
+import challenge.prueba.Marvel;
+import challenge.prueba.MarvelRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -8,8 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class MarvelController {
-    @RequestMapping("/")
+
+    @Autowired
+    MarvelRepository marvelRepository;
+
+    @RequestMapping("/marvel")
     public String index() {
-        return "Greetings from Spring Boot!";
+        Marvel obj2 = new Marvel();
+        obj2 = marvelRepository.save(obj2);
+
+        return obj2.getId();
     }
 }
