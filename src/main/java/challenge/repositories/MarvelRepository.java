@@ -1,6 +1,7 @@
 package challenge.prueba;
 
 
+import challenge.entities.Marvel;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
