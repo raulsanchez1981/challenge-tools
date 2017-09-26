@@ -1,5 +1,6 @@
 package challenge.prueba;
 
+import challenge.entities.Marvel;
 import com.mongodb.WriteResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
