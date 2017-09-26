@@ -1,4 +1,4 @@
-package challenge.prueba;
+package challenge.repositories;
 
 import challenge.entities.Marvel;
 import com.mongodb.WriteResult;
