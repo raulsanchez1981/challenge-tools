@@ -1,4 +1,4 @@
-package marvel.controllers;
+package challenge.controllers;
 
 import org.hamcrest.Matchers;
 import org.junit.Assert;

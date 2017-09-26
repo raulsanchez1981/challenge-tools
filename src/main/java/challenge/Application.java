@@ -1,4 +1,4 @@
-package marvel;
+package challenge;
 
 import java.util.Arrays;
 

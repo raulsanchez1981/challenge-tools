@@ -1,15 +1,14 @@
-package marvel.controllers;
+package challenge.controllers;
 
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-/**
- * Created by cbougeno on 25/09/2017.
- */
 @RestController
-public class MarvelController {
+public class HelloController {
+
     @RequestMapping("/")
     public String index() {
         return "Greetings from Spring Boot!";
     }
+
 }

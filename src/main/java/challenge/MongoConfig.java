@@ -1,4 +1,4 @@
-package marvel;
+package challenge;
 
 import com.mongodb.MongoClient;
 import cz.jirutka.spring.embedmongo.EmbeddedMongoFactoryBean;
