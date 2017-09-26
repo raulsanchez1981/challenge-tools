@@ -8,37 +8,39 @@ import org.springframework.data.mongodb.core.mapping.Document;
 /**
  * Created by cbougeno on 26/09/2017.
  */
-@Document(collection = "domain")
-public class Domain {
+
+@Document(collection = "marvel")
+public class Marvel {
     @Id
-    private long id;
+    private String id;
 
     @Indexed(unique = true)
-    private String domain;
+    private String hero;
 
-    private boolean displayAds;
+    private String power;
 
-    public long getId() {
+
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getDomain() {
-        return domain;
+    public String getHero() {
+        return hero;
     }
 
-    public void setDomain(String domain) {
-        this.domain = domain;
+    public void setHero(String hero) {
+        this.hero = hero;
     }
 
-    public boolean isDisplayAds() {
-        return displayAds;
+    public String getPower() {
+        return power;
     }
 
-    public void setDisplayAds(boolean displayAds) {
-        this.displayAds = displayAds;
+    public void setPower(String power) {
+        this.power = power;
     }
 }

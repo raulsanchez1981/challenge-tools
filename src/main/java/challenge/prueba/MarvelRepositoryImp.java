@@ -10,18 +10,18 @@ import org.springframework.data.mongodb.core.query.Update;
 /**
  * Created by cbougeno on 26/09/2017.
  */
-public class DomailRepositoryImp implements DomainRepositoryCustom {
+public class MarvelRepositoryImp implements MarvelRepositoryCustom {
 
     @Autowired
     MongoTemplate mongoTemplate;
 
     @Override
-    public int updateDomain(String domain, boolean displayAds) {
-        Query query = new Query(Criteria.where("domain").is(domain));
+    public int update(String hero, String power) {
+        Query query = new Query(Criteria.where("hero").is(hero));
         Update update = new Update();
-        update.set("displayAds", displayAds);
+        update.set("power", power);
 
-        WriteResult result = mongoTemplate.updateFirst(query, update, Domain.class);
+        WriteResult result = mongoTemplate.updateFirst(query, update, Marvel.class);
 
         if (result != null)
             return result.getN();
