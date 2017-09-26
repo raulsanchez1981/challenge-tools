@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HelloController {
 
     @RequestMapping(method= RequestMethod.GET, value="/holaGET")
-    public String methodGet(@PathVariable String owner) {
+    public String methodGet() {
         return "Holaaaa GET";
     }
 

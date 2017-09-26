@@ -13,6 +13,10 @@
         <version>1.5.7.RELEASE</version>
     </parent>
 
+    <properties>
+        <main.basedir>${basedir}/../..</main.basedir>
+    </properties>
+
     <dependencies>
         <!--SPRING BEGIN -->
         <dependency>

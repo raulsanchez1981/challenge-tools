@@ -11,12 +11,12 @@ import java.io.IOException;
 /**
  * Created by cbougeno on 25/09/2017.
  */
-@Configuration
+//@Configuration
 public class MongoConfig {
     private static final String MONGO_DB_URL = "localhost";
     private static final String MONGO_DB_NAME = "issues_db";
 
-    @Bean
+    //@Bean
     public MongoTemplate mongoTemplate() throws IOException {
         EmbeddedMongoFactoryBean mongo = new EmbeddedMongoFactoryBean();
         mongo.setBindIp(MONGO_DB_URL);
