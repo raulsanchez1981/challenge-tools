@@ -14,7 +14,7 @@ public class Marvel {
     @Id
     private String id;
 
-    @Indexed(unique = true)
+    //@Indexed(unique = true)
     private String hero;
 
     private String power;

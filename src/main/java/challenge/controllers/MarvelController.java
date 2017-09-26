@@ -4,6 +4,7 @@ import challenge.entities.Marvel;
 import challenge.repositories.MarvelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -15,7 +16,7 @@ public class MarvelController {
     @Autowired
     MarvelRepository marvelRepository;
 
-    @RequestMapping("/marvel")
+    @RequestMapping(method= RequestMethod.POST, value="/marvel")
     public String index() {
         Marvel obj2 = new Marvel();
         obj2.setHero("ASD");
