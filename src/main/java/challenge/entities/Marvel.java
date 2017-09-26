@@ -1,4 +1,4 @@
-package challenge.prueba;
+package challenge.entities;
 
 
 import org.springframework.data.annotation.Id;
