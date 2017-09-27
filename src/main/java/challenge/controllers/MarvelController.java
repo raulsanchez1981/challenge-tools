@@ -20,7 +20,7 @@ public class MarvelController {
     public String index() {
         Marvel obj2 = new Marvel();
         obj2.setHero("ASD");
-        obj2.setPower("123");
+        //obj2.setPower("123");
         obj2 = marvelRepository.save(obj2);
 
         return obj2.getId();

@@ -13,9 +13,6 @@
         <version>1.5.7.RELEASE</version>
     </parent>
 
-    <properties>
-        <main.basedir>${basedir}/../..</main.basedir>
-    </properties>
 
     <dependencies>
         <!--SPRING BEGIN -->
@@ -66,6 +63,25 @@
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
         <!--MONGODB END -->
+
+        <dependency>
+            <groupId>net.sourceforge.htmlunit</groupId>
+            <artifactId>htmlunit</artifactId>
+            <version>2.19</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.codingricky</groupId>
+            <artifactId>marvel-rest-client</artifactId>
+            <version>0.1.2-SNAPSHOT</version>
+        </dependency>
+
 
     </dependencies>
 

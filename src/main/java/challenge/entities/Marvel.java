@@ -17,15 +17,17 @@ public class Marvel {
 
     private String hero;
 
-    private List<String> powers;
-
     private String alterEgo;
+
+    private List<String> powers;
 
     private String color;
 
     private Integer strength;
 
     private String description;
+
+    private String image;
 
     public String getId() {
         return id;
@@ -81,5 +83,13 @@ public class Marvel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
