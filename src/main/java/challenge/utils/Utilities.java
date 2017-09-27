@@ -1,33 +1,33 @@
 package challenge.utils;
 
-import challenge.entities.Marvel;
+import challenge.entities.Character;
 
 /**
  * Created by cbougeno on 27/09/2017.
  */
 public final class Utilities {
 
-    public static Marvel mapMarvel(Marvel oldMarvel, Marvel newMarvel) {
-        if (null != oldMarvel && null != newMarvel) {
-            if (null != newMarvel.getHero()){
-                oldMarvel.setHero(newMarvel.getHero());
+    public static Character mapCharacter(Character oldCharacter, Character newCharacter) {
+        if (null != oldCharacter && null != newCharacter) {
+            if (null != newCharacter.getHero()){
+                oldCharacter.setHero(newCharacter.getHero());
             }
-            if (null != newMarvel.getPowers()){
-                oldMarvel.setPowers(newMarvel.getPowers());
+            if (null != newCharacter.getPowers()){
+                oldCharacter.setPowers(newCharacter.getPowers());
             }
-            if (null != newMarvel.getAlterEgo()){
-                oldMarvel.setAlterEgo(newMarvel.getAlterEgo());
+            if (null != newCharacter.getAlterEgo()){
+                oldCharacter.setAlterEgo(newCharacter.getAlterEgo());
             }
-            if (null != newMarvel.getColor()){
-                oldMarvel.setColor(newMarvel.getColor());
+            if (null != newCharacter.getColor()){
+                oldCharacter.setColor(newCharacter.getColor());
             }
-            if (null != newMarvel.getStrength()){
-                oldMarvel.setStrength(newMarvel.getStrength());
+            if (null != newCharacter.getStrength()){
+                oldCharacter.setStrength(newCharacter.getStrength());
             }
-            if (null != newMarvel.getDescription()){
-                oldMarvel.setDescription(newMarvel.getDescription());
+            if (null != newCharacter.getDescription()){
+                oldCharacter.setDescription(newCharacter.getDescription());
             }
         }
-        return oldMarvel;
+        return oldCharacter;
     }
 }

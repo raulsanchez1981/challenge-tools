@@ -1,7 +1,7 @@
 package challenge.repositories;
 
 
-import challenge.entities.Marvel;
+import challenge.entities.Character;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
  * Created by cbougeno on 26/09/2017.
  */
 @Repository
-public interface MarvelRepository extends MongoRepository<Marvel, Long> {
+public interface CharacterRepository extends MongoRepository<Character, String> {
 
 
 }

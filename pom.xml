@@ -78,7 +78,7 @@
 
         <dependency>
             <groupId>com.github.codingricky</groupId>
-            <artifactId>marvel-rest-client</artifactId>
+            <artifactId>Character-rest-client</artifactId>
             <version>0.1.2-SNAPSHOT</version>
         </dependency>
 

@@ -10,8 +10,8 @@ import java.util.List;
  * Created by cbougeno on 26/09/2017.
  */
 
-@Document(collection = "marvel")
-public class Marvel {
+@Document(collection = "character")
+public class Character {
     @Id
     private String id;
 
