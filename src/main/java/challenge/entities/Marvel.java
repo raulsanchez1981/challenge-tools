@@ -2,7 +2,6 @@ package challenge.entities;
 
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -18,6 +17,11 @@ public class Marvel {
 
     private String power;
 
+    private String alterEgo;
+
+    private String color;
+
+    private Integer strength;
 
     public String getId() {
         return id;
@@ -41,5 +45,29 @@ public class Marvel {
 
     public void setPower(String power) {
         this.power = power;
+    }
+
+    public String getAlterEgo() {
+        return alterEgo;
+    }
+
+    public void setAlterEgo(String alterEgo) {
+        this.alterEgo = alterEgo;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public Integer getStrength() {
+        return strength;
+    }
+
+    public void setStrength(Integer strength) {
+        this.strength = strength;
     }
 }
