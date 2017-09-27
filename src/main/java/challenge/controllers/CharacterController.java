@@ -16,32 +16,33 @@ import java.util.List;
  * Created by cbougeno on 25/09/2017.
  */
 @RestController
+@RequestMapping("/character")
 public class CharacterController {
 
     @Autowired
     CharacterService characterService;
 
-    @RequestMapping(method=RequestMethod.GET, value="/character/{id}")
+    @RequestMapping(method=RequestMethod.GET, value="/{id}")
     public Character findCharacterById(@PathVariable String id)  {
         return this.characterService.obtainCharacterById(id);
     }
 
-    @RequestMapping(method=RequestMethod.POST, value="/character/search")
+    @RequestMapping(method=RequestMethod.POST, value="/search")
     public List<Character> findCharacters(@RequestBody Character character)  {
         return this.characterService.obtainCharacters(character);
     }
 
-    @RequestMapping(method=RequestMethod.POST, value="/character")
+    @RequestMapping(method=RequestMethod.POST, value="")
     public Character saveCharacters(@RequestBody Character character)  {
         return this.characterService.saveCharacter(character);
     }
 
-    @RequestMapping(method=RequestMethod.PUT, value="/character")
+    @RequestMapping(method=RequestMethod.PUT, value="")
     public Character updateCharacter(@RequestBody Character character)  {
         return this.characterService.updateCharacter(character);
     }
 
-    @RequestMapping(method=RequestMethod.DELETE, value="/character/{id}")
+    @RequestMapping(method=RequestMethod.DELETE, value="/{id}")
     public void deleteCharacter(@PathVariable String id)  {
         this.characterService.deleteCharacter(id);
     }

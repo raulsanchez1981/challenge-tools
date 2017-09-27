@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Random;
 
 @RestController
-public class HelloController {
+public class ScrapController {
 
     @Autowired
     CharacterService characterService;
