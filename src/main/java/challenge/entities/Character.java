@@ -18,7 +18,7 @@ public class Character {
     @ApiModelProperty(notes = "The id of the Character", required = true, hidden = true)
     private String id;
 
-    private String hero;
+    private String name;
 
     private String alterEgo;
 
@@ -40,12 +40,12 @@ public class Character {
         this.id = id;
     }
 
-    public String getHero() {
-        return hero;
+    public String getName() {
+        return name;
     }
 
-    public void setHero(String hero) {
-        this.hero = hero;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public List<String> getPowers() {

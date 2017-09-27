@@ -62,7 +62,7 @@ public class HelloController {
                     image = pageCharac.querySelector(".character-image").getAttributes().getNamedItem("src").getNodeValue();
                 }
                 Character heroe = new Character();
-                heroe.setHero(pageCharac.getElementByName("title").getAttribute("content"));
+                heroe.setName(pageCharac.getElementByName("title").getAttribute("content"));
                 if (null!= personalData && personalData.length>1) {
                     heroe.setAlterEgo(personalData[1]);
                 }

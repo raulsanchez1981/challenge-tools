@@ -18,7 +18,7 @@ public class CharacterServiceImpl implements CharacterService {
 
     @Override
     public List<Character> obtainCharacters(Character character){
-        return this.characterRepository.findAll();
+        return this.characterRepository.obtainCharactersByCharacter(character);
     }
 
     @Override

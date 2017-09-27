@@ -9,8 +9,8 @@ public final class Utilities {
 
     public static Character mapCharacter(Character oldCharacter, Character newCharacter) {
         if (null != oldCharacter && null != newCharacter) {
-            if (null != newCharacter.getHero()){
-                oldCharacter.setHero(newCharacter.getHero());
+            if (null != newCharacter.getName()){
+                oldCharacter.setName(newCharacter.getName());
             }
             if (null != newCharacter.getPowers()){
                 oldCharacter.setPowers(newCharacter.getPowers());
