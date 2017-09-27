@@ -4,6 +4,8 @@ package challenge.entities;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 /**
  * Created by cbougeno on 26/09/2017.
  */
@@ -15,13 +17,15 @@ public class Marvel {
 
     private String hero;
 
-    private String power;
+    private List<String> powers;
 
     private String alterEgo;
 
     private String color;
 
     private Integer strength;
+
+    private String description;
 
     public String getId() {
         return id;
@@ -39,12 +43,12 @@ public class Marvel {
         this.hero = hero;
     }
 
-    public String getPower() {
-        return power;
+    public List<String> getPowers() {
+        return powers;
     }
 
-    public void setPower(String power) {
-        this.power = power;
+    public void setPowers(List<String> powers) {
+        this.powers = powers;
     }
 
     public String getAlterEgo() {
@@ -69,5 +73,13 @@ public class Marvel {
 
     public void setStrength(Integer strength) {
         this.strength = strength;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

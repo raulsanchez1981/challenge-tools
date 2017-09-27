@@ -2,6 +2,7 @@ package challenge.services;
 
 import challenge.entities.Marvel;
 import challenge.repositories.MarvelRepository;
+import challenge.utils.Utilities;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,8 +48,9 @@ public class MarvelServicesImpl implements MarvelServices {
     }
 
     @Override
-    public Marvel updateMarvel(String id, Marvel marvel) {
+    public Marvel updateMarvel(String id, Marvel marvelNew) {
         Marvel marvelOld = obtainMarvelById(id);
+        Utilities.mapMarvel(marvelOld, marvelNew);
         return null;
     }
 
