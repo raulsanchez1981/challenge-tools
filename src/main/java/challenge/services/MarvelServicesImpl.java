@@ -1,16 +1,24 @@
 package challenge.services;
 
 import challenge.entities.Marvel;
+import challenge.repositories.MarvelRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * Created by cbougeno on 26/09/2017.
  */
+@Service
 public class MarvelServicesImpl implements MarvelServices {
+
+    @Autowired
+    private MarvelRepository marvelRepository;
+
     @Override
     public List<Marvel> obtainAllMarvels() {
-        return null;
+        return this.marvelRepository.findAll();
     }
 
     @Override
@@ -19,7 +27,7 @@ public class MarvelServicesImpl implements MarvelServices {
     }
 
     @Override
-    public List<Marvel> obtainMarvelById(String id) {
+    public Marvel obtainMarvelById(String id) {
         return null;
     }
 
@@ -35,11 +43,12 @@ public class MarvelServicesImpl implements MarvelServices {
 
     @Override
     public Marvel saveMarvel(Marvel marvel) {
-        return null;
+        return this.marvelRepository.save(marvel);
     }
 
     @Override
     public Marvel updateMarvel(String id, Marvel marvel) {
+        Marvel marvelOld = obtainMarvelById(id);
         return null;
     }
 

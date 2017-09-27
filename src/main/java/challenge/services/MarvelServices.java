@@ -13,7 +13,7 @@ public interface MarvelServices {
 
     List<Marvel> obtainMarvelFiltering(String hero, String power, String alterEgo, String color, Integer strength);
 
-    List<Marvel> obtainMarvelById(String id);
+    Marvel obtainMarvelById(String id);
 
     List<String> obtainPowers();
 

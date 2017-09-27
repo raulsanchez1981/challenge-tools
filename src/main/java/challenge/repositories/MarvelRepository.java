@@ -10,8 +10,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface MarvelRepository extends MongoRepository<Marvel, Long> {
-    Marvel findFirstByHero(String hero);
 
-    Marvel findFirstByPower(String power);
 
 }
