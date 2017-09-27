@@ -1,10 +1,18 @@
 package challenge.entities;
 
 
+import challenge.serialization.LocalDateDeserializer;
+import challenge.serialization.LocalDateSerializer;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,13 +32,16 @@ public class Character {
 
     private List<String> powers;
 
-    private String color;
-
     private Integer strength;
 
     private String description;
 
     private String image;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    private LocalDate birthDate;
 
     public String getId() {
         return id;
@@ -64,14 +75,6 @@ public class Character {
         this.alterEgo = alterEgo;
     }
 
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
     public Integer getStrength() {
         return strength;
     }
@@ -94,5 +97,13 @@ public class Character {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 }

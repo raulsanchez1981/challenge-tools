@@ -18,9 +18,6 @@ public final class Utilities {
             if (null != newCharacter.getAlterEgo()){
                 oldCharacter.setAlterEgo(newCharacter.getAlterEgo());
             }
-            if (null != newCharacter.getColor()){
-                oldCharacter.setColor(newCharacter.getColor());
-            }
             if (null != newCharacter.getStrength()){
                 oldCharacter.setStrength(newCharacter.getStrength());
             }
