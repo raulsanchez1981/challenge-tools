@@ -26,9 +26,14 @@ public class CharacterController {
         return this.characterService.obtainCharacterById(id);
     }
 
-    @RequestMapping(method=RequestMethod.POST, value="/character")
+    @RequestMapping(method=RequestMethod.POST, value="/character/search")
     public List<Character> findCharacters(@RequestBody Character character)  {
         return this.characterService.obtainCharacters(character);
+    }
+
+    @RequestMapping(method=RequestMethod.POST, value="/character")
+    public Character saveCharacters(@RequestBody Character character)  {
+        return this.characterService.saveCharacter(character);
     }
 
     @RequestMapping(method=RequestMethod.PUT, value="/character")

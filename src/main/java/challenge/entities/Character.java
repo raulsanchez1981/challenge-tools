@@ -1,6 +1,7 @@
 package challenge.entities;
 
 
+import io.swagger.annotations.ApiModelProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -12,7 +13,9 @@ import java.util.List;
 
 @Document(collection = "character")
 public class Character {
+
     @Id
+    @ApiModelProperty(notes = "The id of the Character", required = true, hidden = true)
     private String id;
 
     private String hero;
