@@ -94,22 +94,9 @@ public class ScrapController {
                 characterService.saveCharacter(heroe);
             }
 
-
         }catch(Exception e){
             e.printStackTrace();
         }
-
-//        String publicKey = "68be8ec799b1e8490f2cedd31352fdd1";
-//        String privateKey = "4256f1a1bd9ddf3d41670bbd0b75ec080c490fcf";
-//
-//        Proxy proxy = new Proxy("10.129.8.100", 8080);
-//        RestClient restClient = new RestClient(privateKey, publicKey, proxy);
-//        try {
-//            Result<CharacterCharacter> characters = restClient.getCharacters(new CharacterParameters());
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
     }
 
     private String emptyIfNull(String[] array, int index ) {
@@ -120,22 +107,4 @@ public class ScrapController {
         return  value;
     }
 
-    @RequestMapping(method= RequestMethod.POST, value="/HolaPOST")
-    public String methodPost(@RequestBody String prueba) {
-        return "Hola POST";
-    }
-
-    @RequestMapping(method= RequestMethod.PUT, value="/holaPUT")
-    public String methodPUT(@RequestBody String prueba) {
-        return "Hola PUT";
-    }
-
-    @RequestMapping(method= RequestMethod.PATCH, value="/holaPATCH")
-    public String methodPATCH(@RequestBody String prueba) {
-        return "Hola PATCH";
-    }
-
-    @RequestMapping(method= RequestMethod.DELETE, value="/holaDELETE")
-    public void methodDELETE(@RequestHeader String prueba) {
-    }
 }
