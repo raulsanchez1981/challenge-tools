@@ -3,6 +3,7 @@ package challenge.services;
 import challenge.entities.Character;
 import challenge.repositories.CharacterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,7 +29,11 @@ public class CharacterServiceImpl implements CharacterService {
 
     @Override
     public Character saveCharacter(Character character) {
-        return this.characterRepository.save(character);
+        try {
+            return this.characterRepository.save(character);
+        } catch (DuplicateKeyException ignored) {
+            return null;
+        }
     }
 
     @Override
