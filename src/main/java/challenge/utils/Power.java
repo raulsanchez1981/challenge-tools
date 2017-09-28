@@ -6,14 +6,14 @@ package challenge.utils;
 public enum Power {
 
     FLIGHT("Flight"),
-    SUPER_STRENGTH("Super Strength"),
+    SUPER_STRENGTH("Strength"),
     MAGIC("Magic"),
     TELEPATHY("Telepathy"),
     TELEKINESIS("Telekinesis"),
     TELEPORTATION("Teleportation"),
     INTELLECT("Intellect"),
-    SHAPE_SHIFTER("Shape Shifter"),
-    SUPER_SPEED("Super Speed"),
+    SHAPE_SHIFTER("Shape-Shifter"),
+    SUPER_SPEED("Speed"),
     INVULNERABILITY("Invulnerability"),
     INMORTAL("Inmortal");
 

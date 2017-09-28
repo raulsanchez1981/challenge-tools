@@ -2,11 +2,13 @@ package challenge.controllers;
 
 import challenge.entities.Character;
 import challenge.services.CharacterService;
+import challenge.utils.Power;
 import com.gargoylesoftware.htmlunit.ProxyConfig;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.DomNode;
 import com.gargoylesoftware.htmlunit.html.DomNodeList;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -14,13 +16,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @RestController
 public class ScrapController {
 
     @Autowired
     CharacterService characterService;
+
 
     @RequestMapping(method= RequestMethod.GET, value="/holaGET")
     public String methodGet() {
@@ -51,6 +59,7 @@ public class ScrapController {
                 String[] personalData = null;
                 if (null != pageCharac.querySelector(".featured-item-meta")) {
                     personalData = pageCharac.querySelector(".featured-item-meta").asText().split("\\r\\n");
+
                 }
                 String[] description = null;
                 if (null != pageCharac.querySelector(".featured-item-desc")) {
@@ -69,9 +78,18 @@ public class ScrapController {
                 if (null!= description && description.length>1) {
                     heroe.setDescription(description[1]);
                 }
+
+                String powers = this.emptyIfNull(personalData, 7);
+                String abilities = this.emptyIfNull(personalData, 10);
+                List<String> listPowers = Stream.of(Power.values()).filter(p -> StringUtils.containsIgnoreCase(powers, p.getValue()) || StringUtils.containsIgnoreCase(abilities,p.getValue())).map(Power::getValue).collect(Collectors.toList());
+                //7
+                //10
+                heroe.setPowers(listPowers);
                 heroe.setImage(image);
                 Random random = new Random();
                 heroe.setStrength(5+random.nextInt(5));
+                Integer date = 1980 + random.nextInt(15);
+                heroe.setBirthDate(LocalDate.parse("01/01/"+date.toString(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 
                 characterService.saveCharacter(heroe);
             }
@@ -92,6 +110,14 @@ public class ScrapController {
 //            e.printStackTrace();
 //        }
 
+    }
+
+    private String emptyIfNull(String[] array, int index ) {
+        String value = "";
+        if (null != array && null != array[index]) {
+            value = array[index];
+        }
+        return  value;
     }
 
     @RequestMapping(method= RequestMethod.POST, value="/HolaPOST")
