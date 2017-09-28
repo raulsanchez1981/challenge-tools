@@ -19,9 +19,3 @@ public interface CharacterService {
 
     void deleteCharacter(String id);
 }
-    //List<Character> obtainCharacterFiltering(String hero, String power, String alterEgo, String color, Integer strength);
-
-//    List<String> obtainPowers();
-//
-//    List<String> obtainColors();
-

@@ -9,7 +9,6 @@ import org.springframework.data.mongodb.core.query.MongoRegexCreator;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.repository.query.parser.Part;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,13 +23,13 @@ public class CharacterRepositoryImpl implements CustomCharacterRepository {
     public List<Character> obtainCharactersByCharacter(Character character) {
         Query query = new Query();
         if (!StringUtils.isEmpty(character.getName())) {
-            query.addCriteria(Criteria.where("name").regex(toLikeRegex(character.getName())));
+            query.addCriteria(Criteria.where("name").regex(toLikeRegex(character.getName()), "i"));
         }
         if (!StringUtils.isEmpty(character.getAlterEgo())) {
-            query.addCriteria(Criteria.where("alterEgo").regex(toLikeRegex(character.getAlterEgo())));
+            query.addCriteria(Criteria.where("alterEgo").regex(toLikeRegex(character.getAlterEgo()), "i"));
         }
         if (!StringUtils.isEmpty(character.getDescription())) {
-            query.addCriteria(Criteria.where("description").regex(toLikeRegex(character.getDescription())));
+            query.addCriteria(Criteria.where("description").regex(toLikeRegex(character.getDescription()), "i"));
         }
         if (null!=character.getPowers() && !character.getPowers().isEmpty()) {
             query.addCriteria(Criteria.where("powers").in(character.getPowers()));

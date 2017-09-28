@@ -8,11 +8,10 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,6 +25,7 @@ public class Character {
     @ApiModelProperty(notes = "The id of the Character", required = true, hidden = true)
     private String id;
 
+    @Indexed(unique = true)
     private String name;
 
     private String alterEgo;
