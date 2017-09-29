@@ -1,6 +1,7 @@
 package challenge.exception.handler;
 
 import challenge.exception.types.ChallengeControlAcessException;
+import challenge.exception.types.ChallengeControllerException;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -177,6 +178,16 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
         logger.error("error", ex);
         //
         final ApiError apiError = new ApiError(HttpStatus.UNAUTHORIZED, ex.getLocalizedMessage(), ex.getLocalizedMessage());
+        return new ResponseEntity<Object>(apiError, new HttpHeaders(), apiError.getStatus());
+    }
+
+
+    @ExceptionHandler({ ChallengeControllerException.class })
+    public ResponseEntity<Object> handleChallengeControllerException(final ChallengeControllerException ex, final WebRequest request) {
+        logger.info(ex.getClass().getName());
+        logger.error("error", ex);
+        //
+        final ApiError apiError = new ApiError(HttpStatus.INTERNAL_SERVER_ERROR, ex.getLocalizedMessage(), ex.getLocalizedMessage());
         return new ResponseEntity<Object>(apiError, new HttpHeaders(), apiError.getStatus());
     }
 }

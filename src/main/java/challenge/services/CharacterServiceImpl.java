@@ -1,10 +1,16 @@
 package challenge.services;
 
 import challenge.entities.Character;
+import challenge.exception.types.ChallengeServiceException;
 import challenge.repositories.CharacterRepository;
 import challenge.security.ControlAccessUsers;
+import challenge.utils.ErrorCodes;
+import challenge.utils.ErrorMessages;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.data.mongodb.util.MongoDbErrorCodes;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,10 +19,14 @@ import java.util.List;
  * Created by cbougeno on 26/09/2017.
  */
 @Service
+@EnableConfigurationProperties
 public class CharacterServiceImpl implements CharacterService {
 
     @Autowired
     private CharacterRepository characterRepository;
+
+    @Autowired
+    ErrorMessages errorMessages;
 
     @Override
     @ControlAccessUsers
@@ -35,21 +45,29 @@ public class CharacterServiceImpl implements CharacterService {
     public Character saveCharacter(String userName, Character character) {
         try {
             return this.characterRepository.save(character);
-        } catch (DuplicateKeyException ignored) {
-            return null;
+        } catch (DuplicateKeyException e) {
+            throw new ChallengeServiceException(errorMessages.getProperty(ErrorCodes.DUPLICATE_CHARACTER));
         }
     }
 
     @Override
     @ControlAccessUsers
     public Character updateCharacter(String userName, Character characterNew) {
-       return this.characterRepository.save(characterNew);
+        try {
+            return this.characterRepository.save(characterNew);
+        } catch (Exception e) {
+            throw new ChallengeServiceException(errorMessages.getProperty(ErrorCodes.UPDATE_ERROR));
+        }
     }
 
     @Override
     @ControlAccessUsers
     public void deleteCharacter(String userName, String id) {
-        this.characterRepository.delete(id);
+        try {
+            this.characterRepository.delete(id);
+        } catch (Exception e) {
+            throw new ChallengeServiceException(errorMessages.getProperty(ErrorCodes.DELETE_ERROR));
+        }
     }
 
 }

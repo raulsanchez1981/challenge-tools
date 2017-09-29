@@ -1,6 +1,7 @@
 package challenge.services;
 
 import challenge.entities.Character;
+import challenge.exception.types.ChallengeServiceException;
 
 import java.util.List;
 

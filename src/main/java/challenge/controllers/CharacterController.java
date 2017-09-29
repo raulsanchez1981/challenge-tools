@@ -1,6 +1,8 @@
 package challenge.controllers;
 
 import challenge.entities.Character;
+import challenge.exception.types.ChallengeControllerException;
+import challenge.exception.types.ChallengeServiceException;
 import challenge.services.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,21 +31,37 @@ public class CharacterController {
 
     @RequestMapping(method=RequestMethod.POST, value="/search")
     public List<Character> findCharacters(@RequestParam String userName, @RequestBody Character character)  {
-        return this.characterService.obtainCharacters(userName, character);
+        try {
+            return this.characterService.obtainCharacters(userName, character);
+        } catch (ChallengeServiceException e) {
+            throw new ChallengeControllerException(e.getMessage());
+        }
     }
 
     @RequestMapping(method=RequestMethod.POST, value="/")
     public Character saveCharacters(@RequestParam String userName, @RequestBody Character character)  {
-        return this.characterService.saveCharacter(userName, character);
+        try {
+            return this.characterService.saveCharacter(userName, character);
+        }catch (ChallengeServiceException e) {
+            throw new ChallengeControllerException(e.getMessage());
+        }
     }
 
     @RequestMapping(method=RequestMethod.PUT, value="/")
     public Character updateCharacter(@RequestParam String userName, @RequestBody Character character)  {
-        return this.characterService.updateCharacter(userName, character);
+        try {
+            return this.characterService.updateCharacter(userName, character);
+        } catch (ChallengeServiceException e) {
+            throw new ChallengeControllerException(e.getMessage());
+        }
     }
 
     @RequestMapping(method=RequestMethod.DELETE, value="/{id}")
     public void deleteCharacter(@RequestParam String userName, @PathVariable String id)  {
-        this.characterService.deleteCharacter(userName, id);
+        try {
+            this.characterService.deleteCharacter(userName, id);
+        } catch (ChallengeServiceException e) {
+            throw new ChallengeControllerException(e.getMessage());
+        }
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -46,11 +47,11 @@ public class UserController {
     }
 
     @RequestMapping(method=RequestMethod.PUT, value="/enable")
-    public void activateUser(@PathVariable String id)  {
+    public void activateUser(@RequestParam String id)  {
         this.userService.enableUser(id);
     }
     @RequestMapping(method=RequestMethod.PUT, value="/disable")
-    public void deActivateUser(@PathVariable String id)  {
+    public void deActivateUser(@RequestParam String id)  {
         this.userService.disableUser(id);
     }
 }
