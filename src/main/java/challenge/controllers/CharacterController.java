@@ -23,27 +23,27 @@ public class CharacterController {
     CharacterService characterService;
 
     @RequestMapping(method=RequestMethod.GET, value="/{id}")
-    public Character findCharacterById(@PathVariable String id)  {
-        return this.characterService.obtainCharacterById(id);
+    public Character findCharacterById(@RequestParam String userName, @PathVariable String id)  {
+        return this.characterService.obtainCharacterById(userName, id);
     }
 
     @RequestMapping(method=RequestMethod.POST, value="/search")
-    public List<Character> findCharacters(@RequestBody Character character, @RequestParam String userName)  {
-        return this.characterService.obtainCharacters(character, userName);
+    public List<Character> findCharacters(@RequestParam String userName, @RequestBody Character character)  {
+        return this.characterService.obtainCharacters(userName, character);
     }
 
     @RequestMapping(method=RequestMethod.POST, value="/")
-    public Character saveCharacters(@RequestBody Character character)  {
-        return this.characterService.saveCharacter(character);
+    public Character saveCharacters(@RequestParam String userName, @RequestBody Character character)  {
+        return this.characterService.saveCharacter(userName, character);
     }
 
     @RequestMapping(method=RequestMethod.PUT, value="/")
-    public Character updateCharacter(@RequestBody Character character)  {
-        return this.characterService.updateCharacter(character);
+    public Character updateCharacter(@RequestParam String userName, @RequestBody Character character)  {
+        return this.characterService.updateCharacter(userName, character);
     }
 
     @RequestMapping(method=RequestMethod.DELETE, value="/{id}")
-    public void deleteCharacter(@PathVariable String id)  {
-        this.characterService.deleteCharacter(id);
+    public void deleteCharacter(@RequestParam String userName, @PathVariable String id)  {
+        this.characterService.deleteCharacter(userName, id);
     }
 }

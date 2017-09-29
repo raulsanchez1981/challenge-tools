@@ -91,7 +91,7 @@ public class ScrapController {
                 Integer date = 1980 + random.nextInt(15);
                 heroe.setBirthDate(LocalDate.parse("01/01/"+date.toString(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 
-                characterService.saveCharacter(heroe);
+                characterService.saveCharacter("scrap", heroe);
             }
 
         }catch(Exception e){
