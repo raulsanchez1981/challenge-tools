@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -27,8 +28,8 @@ public class CharacterController {
     }
 
     @RequestMapping(method=RequestMethod.POST, value="/search")
-    public List<Character> findCharacters(@RequestBody Character character)  {
-        return this.characterService.obtainCharacters(character);
+    public List<Character> findCharacters(@RequestBody Character character, @RequestParam String userName)  {
+        return this.characterService.obtainCharacters(character, userName);
     }
 
     @RequestMapping(method=RequestMethod.POST, value="/")

@@ -7,15 +7,17 @@ import java.util.List;
 /**
  * Created by cbougeno on 26/09/2017.
  */
+
 public interface CharacterService {
 
-    List<Character> obtainCharacters(Character character);
 
-    Character obtainCharacterById(String id);
+    List<Character> obtainCharacters(String userName, Character character);
 
-    Character saveCharacter(Character character);
+    Character obtainCharacterById(String userName, String id);
 
-    Character updateCharacter(Character character);
+    Character saveCharacter(String userName, Character character);
 
-    void deleteCharacter(String id);
+    Character updateCharacter(String userName, Character character);
+
+    void deleteCharacter(String userName, String id);
 }
