@@ -1,6 +1,7 @@
 package challenge.controllers;
 
 import challenge.entities.Character;
+import challenge.repositories.CharacterRepository;
 import challenge.services.CharacterService;
 import challenge.utils.Power;
 import com.gargoylesoftware.htmlunit.ProxyConfig;
@@ -10,11 +11,11 @@ import com.gargoylesoftware.htmlunit.html.DomNodeList;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -24,15 +25,27 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @RestController
+@PropertySource("classpath:scrapingUrls.properties")
 public class ScrapController {
 
     @Autowired
+    private CharacterRepository characterRepository;
+
+    @Autowired
     CharacterService characterService;
+
+    @Value("${marvelHeroes.urls}")
+    private String marvelCharactersUrls;
 
 
     @RequestMapping(method= RequestMethod.GET, value="/holaGET")
     public String methodGet() {
         return "Holaaaa GET";
+    }
+
+    @RequestMapping(method= RequestMethod.GET, value="/properties")
+    public void scrapingProperties() {
+        Stream.of(marvelCharactersUrls.split(",")).forEach(this::scrapingWeb);
     }
 
     @RequestMapping(method= RequestMethod.GET, value="/web")
@@ -44,9 +57,6 @@ public class ScrapController {
         client.getOptions().setProxyConfig(proxyConfig);
         client.getOptions().setCssEnabled(false);
         client.getOptions().setJavaScriptEnabled(false);
-
-
-
 
         try {
             HtmlPage page = client.getPage(url);
@@ -93,7 +103,6 @@ public class ScrapController {
 
                 characterService.saveCharacter("scrap", heroe);
             }
-
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -101,7 +110,7 @@ public class ScrapController {
 
     private String emptyIfNull(String[] array, int index ) {
         String value = "";
-        if (null != array && null != array[index]) {
+        if (null != array && array.length > 1 && null != array[index]) {
             value = array[index];
         }
         return  value;
