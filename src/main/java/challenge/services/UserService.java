@@ -19,8 +19,10 @@ public interface UserService {
 
     User updateUser(User user);
 
-    void enableUser (String id);
+    void enableUser(String id);
 
-    void disableUser (String id);
+    void disableUser(String id);
+
+    boolean isActiveUser(String userName);
 
 }

@@ -55,4 +55,14 @@ public class UserServiceImpl implements UserService {
         this.userRepository.save(user);
     }
 
+    @Override
+    public boolean isActiveUser(String userName) {
+        boolean active = false;
+        User user = this.getUserByUserName(userName);
+        if (null!=user) {
+            active = user.getActive();
+        }
+        return active;
+    }
+
 }

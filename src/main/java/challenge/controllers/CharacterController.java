@@ -31,12 +31,12 @@ public class CharacterController {
         return this.characterService.obtainCharacters(character);
     }
 
-    @RequestMapping(method=RequestMethod.POST, value="")
+    @RequestMapping(method=RequestMethod.POST, value="/")
     public Character saveCharacters(@RequestBody Character character)  {
         return this.characterService.saveCharacter(character);
     }
 
-    @RequestMapping(method=RequestMethod.PUT, value="")
+    @RequestMapping(method=RequestMethod.PUT, value="/")
     public Character updateCharacter(@RequestBody Character character)  {
         return this.characterService.updateCharacter(character);
     }
