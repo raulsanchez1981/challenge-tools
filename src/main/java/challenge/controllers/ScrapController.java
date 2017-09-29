@@ -3,7 +3,7 @@ package challenge.controllers;
 import challenge.entities.Character;
 import challenge.repositories.CharacterRepository;
 import challenge.services.CharacterService;
-import challenge.utils.Power;
+import challenge.enums.Power;
 import com.gargoylesoftware.htmlunit.ProxyConfig;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.DomNode;
