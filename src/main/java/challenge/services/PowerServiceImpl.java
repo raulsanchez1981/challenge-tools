@@ -1,6 +1,6 @@
 package challenge.services;
 
-import challenge.utils.Power;
+import challenge.enums.Power;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

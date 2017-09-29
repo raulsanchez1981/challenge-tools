@@ -1,4 +1,4 @@
-package challenge.utils;
+package challenge.enums;
 
 /**
  * Created by rsanchpa on 27/09/2017.
