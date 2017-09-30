@@ -9,5 +9,7 @@ import java.util.List;
  */
 public interface CustomCharacterRepository {
 
-    List<Character> obtainCharactersByCharacter(Character character);
+    List<Character> obtainCharactersByCharacter(String userName, Character character);
+
+    void updateCharacter(Character character);
 }

@@ -31,19 +31,25 @@ public class CharacterServiceImpl implements CharacterService {
     @Override
     @ControlAccessUsers
     public List<Character> obtainCharacters(String userName, Character character){
-        return this.characterRepository.obtainCharactersByCharacter(character);
+        return this.characterRepository.obtainCharactersByCharacter(userName, character);
     }
 
     @Override
     @ControlAccessUsers
     public Character obtainCharacterById(String userName, String id) {
-        return this.characterRepository.findOne(id);
+        Character output = null;
+        Character character = this.characterRepository.findOne(id);
+        if (null!=character && userName.equals(character.getUserCreation())) {
+            output = character;
+        }
+        return output;
     }
 
     @Override
     @ControlAccessUsers
     public Character saveCharacter(String userName, Character character) {
         try {
+            character.setUserCreation(userName);
             return this.characterRepository.save(character);
         } catch (DuplicateKeyException e) {
             throw new ChallengeServiceException(errorMessages.getProperty(ErrorCodes.DUPLICATE_CHARACTER));
@@ -53,8 +59,13 @@ public class CharacterServiceImpl implements CharacterService {
     @Override
     @ControlAccessUsers
     public Character updateCharacter(String userName, Character characterNew) {
+        Character characterOld = this.characterRepository.findOne(characterNew.getId());
+        if (!userName.equals(characterOld.getUserCreation())){
+            throw new ChallengeServiceException(errorMessages.getProperty(ErrorCodes.NOT_CREATOR_UPD));
+        }
         try {
-            return this.characterRepository.save(characterNew);
+            this.characterRepository.updateCharacter(characterNew);
+            return this.characterRepository.findOne(characterNew.getId());
         } catch (Exception e) {
             throw new ChallengeServiceException(errorMessages.getProperty(ErrorCodes.UPDATE_ERROR));
         }
@@ -63,6 +74,10 @@ public class CharacterServiceImpl implements CharacterService {
     @Override
     @ControlAccessUsers
     public void deleteCharacter(String userName, String id) {
+        Character characterOld = this.characterRepository.findOne(id);
+        if (!userName.equals(characterOld.getUserCreation())){
+            throw new ChallengeServiceException(errorMessages.getProperty(ErrorCodes.NOT_CREATOR_DEL));
+        }
         try {
             this.characterRepository.delete(id);
         } catch (Exception e) {

@@ -4,6 +4,7 @@ package challenge.entities;
 import challenge.serialization.LocalDateDeserializer;
 import challenge.serialization.LocalDateSerializer;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.swagger.annotations.ApiModelProperty;
@@ -42,6 +43,12 @@ public class Character {
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate birthDate;
+
+    @JsonIgnore
+    private String userCreation;
+
+
+
 
     public String getId() {
         return id;
@@ -105,5 +112,13 @@ public class Character {
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public String getUserCreation() {
+        return userCreation;
+    }
+
+    public void setUserCreation(String userCreation) {
+        this.userCreation = userCreation;
     }
 }
