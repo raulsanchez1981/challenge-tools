@@ -58,6 +58,9 @@ public class CharacterServiceImpl implements CharacterService {
     @ControlAccessCharacter
     public Character updateCharacter(String userName, Character characterNew) {
         Character characterOld = this.characterRepository.findOne(characterNew.getId());
+        if (null == characterOld) {
+            throw new ChallengeServiceException(errorMessages.getProperty(ErrorCodes.CHARACTER_NOT_FOUND));
+        }
         if (!userName.equals(characterOld.getUserCreation())){
             throw new ChallengeServiceException(errorMessages.getProperty(ErrorCodes.NOT_CREATOR_UPD));
         }

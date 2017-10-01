@@ -6,6 +6,7 @@ import challenge.exception.types.ChallengeServiceException;
 import challenge.services.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,11 +34,16 @@ public class CharacterController {
 
     @RequestMapping(method=RequestMethod.POST, value="/search")
     public List<Character> findCharacters(@RequestParam String userName, @RequestBody Character character)  {
+        List<Character> listCharacters;
         try {
-            return this.characterService.obtainCharacters(userName, character);
+            listCharacters = this.characterService.obtainCharacters(userName, character);
+            if (listCharacters.isEmpty()) {
+                listCharacters = null;
+            }
         } catch (ChallengeServiceException e) {
             throw new ChallengeControllerException(e.getMessage());
         }
+        return listCharacters;
     }
 
     @RequestMapping(method=RequestMethod.POST, value="/")
