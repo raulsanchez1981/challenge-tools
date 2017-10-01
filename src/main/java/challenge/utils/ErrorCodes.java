@@ -10,4 +10,9 @@ public final class ErrorCodes {
     public static final String DELETE_ERROR = "deletecharacter";
     public static final String NOT_CREATOR_UPD = "notcreatorupd";
     public static final String NOT_CREATOR_DEL = "notcreatordel";
+
+    public static final String USER_NOT_EXIST = "usernotexist";
+    public static final String USER_NOT_ACTIVE = "usernotactive";
+    public static final String USER_NOT_ADMIN = "usernotadmin";
+
 }

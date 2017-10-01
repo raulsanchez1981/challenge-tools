@@ -34,6 +34,8 @@ public class User {
 
     private Integer numActiveDays;
 
+    private String rol;
+
     private Boolean active;
 
 
@@ -84,5 +86,13 @@ public class User {
 
     public void setNumActiveDays(Integer numActiveDays) {
         this.numActiveDays = numActiveDays;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 }

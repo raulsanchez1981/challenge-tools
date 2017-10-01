@@ -23,35 +23,37 @@ public class UserController {
     UserService userService;
 
     @RequestMapping(method= RequestMethod.GET, value="/{name}")
-    public List<User> findUsersByName(@PathVariable String name)  {
-        return this.userService.getUserByName(name);
+    public List<User> findUsersByName(@RequestParam String userName, @PathVariable String name)  {
+        return this.userService.getUserByName(userName, name);
     }
+
     @RequestMapping(method= RequestMethod.GET, value="/{userName}")
     public User findUsersByUserName(@PathVariable String userName)  {
         return this.userService.getUserByUserName(userName);
     }
 
     @RequestMapping(method=RequestMethod.GET, value="/search")
-    public List<User> findAllUsers() {
-        return this.userService.obtainAllUsers();
+    public List<User> findAllUsers(@RequestParam String userName) {
+        return this.userService.obtainAllUsers(userName);
     }
 
     @RequestMapping(method=RequestMethod.POST, value="/")
-    public User saveUsers(@RequestBody User user)  {
-        return this.userService.addUser(user);
+    public User saveUsers(@RequestParam String userName, @RequestBody User user)  {
+        return this.userService.addUser(userName, user);
     }
 
     @RequestMapping(method=RequestMethod.PUT, value="/")
-    public User updateUser(@RequestBody User user)  {
-        return this.userService.updateUser(user);
+    public User updateUser(@RequestParam String userName, @RequestBody User user)  {
+        return this.userService.updateUser(userName, user);
     }
 
     @RequestMapping(method=RequestMethod.PUT, value="/enable")
-    public void activateUser(@RequestParam String id)  {
-        this.userService.enableUser(id);
+    public void activateUser(@RequestParam String userName, @RequestParam String id)  {
+        this.userService.enableUser(userName, id);
     }
+
     @RequestMapping(method=RequestMethod.PUT, value="/disable")
-    public void deActivateUser(@RequestParam String id)  {
-        this.userService.disableUser(id);
+    public void deActivateUser(@RequestParam String userName, @RequestParam String id)  {
+        this.userService.disableUser(userName, id);
     }
 }

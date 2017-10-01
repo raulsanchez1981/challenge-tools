@@ -9,20 +9,22 @@ import java.util.List;
  */
 public interface UserService {
 
-    List<User> obtainAllUsers();
+    List<User> obtainAllUsers(String userName);
 
-    List<User> getUserByName(String name);
+    List<User> getUserByName(String userName, String name);
 
     User getUserByUserName(String userName);
 
-    User addUser(User user);
+    User addUser(String userName, User user);
 
-    User updateUser(User user);
+    User updateUser(String userName, User user);
 
-    void enableUser(String id);
+    void enableUser(String userName, String id);
 
-    void disableUser(String id);
+    void disableUser(String userName, String id);
 
     boolean isActiveUser(String userName);
+
+    boolean isAdminAndActiveUser(String userName);
 
 }

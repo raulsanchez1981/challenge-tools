@@ -1,6 +1,7 @@
 package challenge.security;
 
 import challenge.exception.types.ChallengeControlAcessException;
+import challenge.exception.types.ChallengeServiceException;
 import challenge.services.UserService;
 import challenge.utils.ErrorMessages;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -27,17 +28,29 @@ public class ControlAcessAspect {
     ErrorMessages errorMessages;
 
 
-    @Around("@annotation(ControlAccessUsers)")
+    @Around("@annotation(ControlAccessCharacter)")
     public Object ckeckUserActive(ProceedingJoinPoint joinPoint) throws ChallengeControlAcessException, Throwable {
         String userName = joinPoint.getArgs()[0].toString();
-        boolean accessControl = this.userService.isActiveUser(userName);
-        if (!accessControl) {
-            throw new ChallengeControlAcessException(errorMessages.getProperty(HttpStatus.UNAUTHORIZED.getReasonPhrase()));
+        try {
+            this.userService.isActiveUser(userName);
+        } catch (ChallengeServiceException e) {
+            throw new ChallengeControlAcessException(e.getMessage());
         }
         return joinPoint.proceed();
     }
 
-//    @Around("@annotation(ControlAccessUsers)")
+    @Around("@annotation(ControlAccessUser)")
+    public Object ckeckUserActiveAdmin(ProceedingJoinPoint joinPoint) throws ChallengeControlAcessException, Throwable {
+        String userName = joinPoint.getArgs()[0].toString();
+        try {
+            this.userService.isAdminAndActiveUser(userName);
+        } catch (ChallengeServiceException e) {
+            throw new ChallengeControlAcessException(e.getMessage());
+        }
+        return joinPoint.proceed();
+    }
+
+//    @Around("@annotation(ControlAccessCharacter)")
 //    public Object beforeSampleCreation(ProceedingJoinPoint joinPoint) throws Throwable {
 //        long start = System.currentTimeMillis();
 //

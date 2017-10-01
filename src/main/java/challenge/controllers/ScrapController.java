@@ -37,12 +37,6 @@ public class ScrapController {
     @Value("${marvelHeroes.urls}")
     private String marvelCharactersUrls;
 
-
-    @RequestMapping(method= RequestMethod.GET, value="/holaGET")
-    public String methodGet() {
-        return "Holaaaa GET";
-    }
-
     @RequestMapping(method= RequestMethod.GET, value="/properties")
     public void scrapingProperties() {
         Stream.of(marvelCharactersUrls.split(",")).forEach(this::scrapingWeb);
@@ -101,7 +95,7 @@ public class ScrapController {
                 Integer date = 1980 + random.nextInt(15);
                 heroe.setBirthDate(LocalDate.parse("01/01/"+date.toString(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 
-                characterService.saveCharacter("scrap", heroe);
+                characterService.saveCharacter("admin", heroe);
             }
         }catch(Exception e){
             e.printStackTrace();

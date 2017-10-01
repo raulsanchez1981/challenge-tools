@@ -3,14 +3,12 @@ package challenge.services;
 import challenge.entities.Character;
 import challenge.exception.types.ChallengeServiceException;
 import challenge.repositories.CharacterRepository;
-import challenge.security.ControlAccessUsers;
+import challenge.security.ControlAccessCharacter;
 import challenge.utils.ErrorCodes;
 import challenge.utils.ErrorMessages;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.dao.DuplicateKeyException;
-import org.springframework.data.mongodb.util.MongoDbErrorCodes;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,13 +27,13 @@ public class CharacterServiceImpl implements CharacterService {
     ErrorMessages errorMessages;
 
     @Override
-    @ControlAccessUsers
+    @ControlAccessCharacter
     public List<Character> obtainCharacters(String userName, Character character){
         return this.characterRepository.obtainCharactersByCharacter(userName, character);
     }
 
     @Override
-    @ControlAccessUsers
+    @ControlAccessCharacter
     public Character obtainCharacterById(String userName, String id) {
         Character output = null;
         Character character = this.characterRepository.findOne(id);
@@ -46,7 +44,7 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     @Override
-    @ControlAccessUsers
+    @ControlAccessCharacter
     public Character saveCharacter(String userName, Character character) {
         try {
             character.setUserCreation(userName);
@@ -57,7 +55,7 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     @Override
-    @ControlAccessUsers
+    @ControlAccessCharacter
     public Character updateCharacter(String userName, Character characterNew) {
         Character characterOld = this.characterRepository.findOne(characterNew.getId());
         if (!userName.equals(characterOld.getUserCreation())){
@@ -72,7 +70,7 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     @Override
-    @ControlAccessUsers
+    @ControlAccessCharacter
     public void deleteCharacter(String userName, String id) {
         Character characterOld = this.characterRepository.findOne(id);
         if (!userName.equals(characterOld.getUserCreation())){
