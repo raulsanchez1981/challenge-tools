@@ -47,8 +47,8 @@ public class ScrapController {
 
         String https = "https:";
         WebClient client = new WebClient();
-        ProxyConfig proxyConfig = new ProxyConfig("10.129.8.100", 8080);
-        client.getOptions().setProxyConfig(proxyConfig);
+//        ProxyConfig proxyConfig = new ProxyConfig("10.129.8.100", 8080);
+//        client.getOptions().setProxyConfig(proxyConfig);
         client.getOptions().setCssEnabled(false);
         client.getOptions().setJavaScriptEnabled(false);
 
