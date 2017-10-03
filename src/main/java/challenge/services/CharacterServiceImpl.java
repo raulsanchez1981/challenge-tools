@@ -3,6 +3,7 @@ package challenge.services;
 import challenge.entities.Character;
 import challenge.exception.types.ChallengeServiceException;
 import challenge.repositories.CharacterRepository;
+import challenge.search.CharacterSearch;
 import challenge.security.ControlAccessCharacter;
 import challenge.utils.ErrorCodes;
 import challenge.utils.ErrorMessages;
@@ -28,8 +29,8 @@ public class CharacterServiceImpl implements CharacterService {
 
     @Override
     @ControlAccessCharacter
-    public List<Character> obtainCharacters(String userName, Character character){
-        return this.characterRepository.obtainCharactersByCharacter(userName, character);
+    public List<Character> obtainCharacters(String userName, CharacterSearch characterSearch){
+        return this.characterRepository.obtainCharactersByCharacter(userName, characterSearch);
     }
 
     @Override

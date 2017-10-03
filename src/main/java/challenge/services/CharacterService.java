@@ -2,6 +2,7 @@ package challenge.services;
 
 import challenge.entities.Character;
 import challenge.exception.types.ChallengeServiceException;
+import challenge.search.CharacterSearch;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
 public interface CharacterService {
 
 
-    List<Character> obtainCharacters(String userName, Character character);
+    List<Character> obtainCharacters(String userName, CharacterSearch characterSearch);
 
     Character obtainCharacterById(String userName, String id);
 

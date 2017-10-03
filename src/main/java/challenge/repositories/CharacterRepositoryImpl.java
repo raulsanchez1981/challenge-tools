@@ -1,6 +1,7 @@
 package challenge.repositories;
 
 import challenge.entities.Character;
+import challenge.search.CharacterSearch;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 import com.mongodb.WriteResult;
@@ -24,19 +25,19 @@ public class CharacterRepositoryImpl implements CustomCharacterRepository {
     private MongoTemplate mongoTemplate;
 
     @Override
-    public List<Character> obtainCharactersByCharacter(String userName, Character character) {
+    public List<Character> obtainCharactersByCharacter(String userName, CharacterSearch characterSearch) {
         Query query = new Query();
-        if (!StringUtils.isEmpty(character.getName())) {
-            query.addCriteria(Criteria.where("name").regex(toLikeRegex(character.getName()), "i"));
+        if (!StringUtils.isEmpty(characterSearch.getName())) {
+            query.addCriteria(Criteria.where("name").regex(toLikeRegex(characterSearch.getName()), "i"));
         }
-        if (!StringUtils.isEmpty(character.getAlterEgo())) {
-            query.addCriteria(Criteria.where("alterEgo").regex(toLikeRegex(character.getAlterEgo()), "i"));
+        if (!StringUtils.isEmpty(characterSearch.getAlterEgo())) {
+            query.addCriteria(Criteria.where("alterEgo").regex(toLikeRegex(characterSearch.getAlterEgo()), "i"));
         }
-        if (!StringUtils.isEmpty(character.getDescription())) {
-            query.addCriteria(Criteria.where("description").regex(toLikeRegex(character.getDescription()), "i"));
+        if (!StringUtils.isEmpty(characterSearch.getDescription())) {
+            query.addCriteria(Criteria.where("description").regex(toLikeRegex(characterSearch.getDescription()), "i"));
         }
-        if (null!=character.getPowers() && !character.getPowers().isEmpty()) {
-            query.addCriteria(Criteria.where("powers").in(character.getPowers()));
+        if (null!=characterSearch.getPowers() && !characterSearch.getPowers().isEmpty()) {
+            query.addCriteria(Criteria.where("powers").in(characterSearch.getPowers()));
         }
         Criteria criteriaOr = new Criteria();
         criteriaOr.orOperator(Criteria.where("userCreation").is(userName), Criteria.where("userCreation").exists(false));

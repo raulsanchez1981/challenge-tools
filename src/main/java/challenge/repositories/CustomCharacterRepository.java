@@ -1,6 +1,7 @@
 package challenge.repositories;
 
 import challenge.entities.Character;
+import challenge.search.CharacterSearch;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  */
 public interface CustomCharacterRepository {
 
-    List<Character> obtainCharactersByCharacter(String userName, Character character);
+    List<Character> obtainCharactersByCharacter(String userName, CharacterSearch characterSearch);
 
     void updateCharacter(Character character);
 }
