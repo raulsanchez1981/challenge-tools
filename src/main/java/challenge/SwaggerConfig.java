@@ -28,9 +28,11 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-            .title("REST Api with Spring Boot, MongoDB and Swagger")
-            .description("Challenge for Tools Team")
-            .contact("Tools Team")
+            .title("Challenge for Tools Team")
+            .description("A continuación se pueden encontrar todos los EndPoint y entidades que serán necesarios para" +
+                "la realización de la prueba.\n" +
+                "Puedes utilizarlos todas las veces que quieras y realizar las pruebas que necesites para luego usarlos " +
+                "en tu desarrollo.")
             .version("1.0")
             .build();
     }

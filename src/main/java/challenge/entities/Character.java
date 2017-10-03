@@ -26,19 +26,25 @@ public class Character {
     @ApiModelProperty(notes = "The id of the Character", required = true, hidden = true)
     private String id;
 
-    @Indexed(unique = true)
+    @ApiModelProperty(notes = "The Name of the Character", required = true, value = "Super-Heroe", example = "Super-Heroe")
     private String name;
 
+    @ApiModelProperty(notes = "The Alter Ego of the Character", required = true, value = "Pepito", example = "Pepito")
     private String alterEgo;
 
+    @ApiModelProperty(notes = "The Powers of the Character", required = true)
     private List<String> powers;
 
+    @ApiModelProperty(notes = "The Strength of the Character", required = true, dataType = "integer", value = "9", example = "9")
     private Integer strength;
 
+    @ApiModelProperty(notes = "The Description of the Character", required = true, value = "A normal guy with powers", example = "A normal guy with powers")
     private String description;
 
+    @ApiModelProperty(notes = "The Image's URL of the Character", required = true, value = "http://wheretheimage.es", example = "http://wheretheimage.es")
     private String image;
 
+    @ApiModelProperty(notes = "The Birth Date of the Character", required = true, value = "01/06/1991", example = "01/06/1991")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonDeserialize(using = LocalDateDeserializer.class)
@@ -47,6 +53,8 @@ public class Character {
     @JsonIgnore
     private String userCreation;
 
+    @ApiModelProperty(hidden = true, dataType = "boolean")
+    private Boolean modifiable;
 
 
 
@@ -121,4 +129,9 @@ public class Character {
     public void setUserCreation(String userCreation) {
         this.userCreation = userCreation;
     }
+
+    public Boolean getModifiable() {
+        return (userCreation != null) ? true : false;
+    }
+
 }

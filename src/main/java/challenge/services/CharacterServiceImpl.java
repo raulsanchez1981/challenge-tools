@@ -37,7 +37,7 @@ public class CharacterServiceImpl implements CharacterService {
     public Character obtainCharacterById(String userName, String id) {
         Character output = null;
         Character character = this.characterRepository.findOne(id);
-        if (null!=character && userName.equals(character.getUserCreation())) {
+        if (null!=character && (userName.equals(character.getUserCreation()) || null == character.getUserCreation())) {
             output = character;
         }
         return output;
