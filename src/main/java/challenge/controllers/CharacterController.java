@@ -11,6 +11,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,12 +31,12 @@ public class CharacterController {
     CharacterService characterService;
 
     @RequestMapping(method=RequestMethod.GET, value="/{id}")
-    public Character findCharacterById(@RequestParam String userName, @PathVariable String id)  {
+    public Character findCharacterById(@RequestHeader String userName, @PathVariable String id)  {
         return this.characterService.obtainCharacterById(userName, id);
     }
 
     @RequestMapping(method=RequestMethod.POST, value="/search")
-    public List<Character> findCharacters(@RequestParam String userName, @RequestBody CharacterSearch characterSearch)  {
+    public List<Character> findCharacters(@RequestHeader String userName, @RequestBody CharacterSearch characterSearch)  {
         List<Character> listCharacters;
         try {
             listCharacters = this.characterService.obtainCharacters(userName, characterSearch);
@@ -49,7 +50,7 @@ public class CharacterController {
     }
 
     @RequestMapping(method=RequestMethod.POST, value="/")
-    public Character saveCharacters(@RequestParam String userName, @RequestBody Character character)  {
+    public Character saveCharacters(@RequestHeader String userName, @RequestBody Character character)  {
         try {
             return this.characterService.saveCharacter(userName, character);
         }catch (ChallengeServiceException e) {
@@ -58,7 +59,7 @@ public class CharacterController {
     }
 
     @RequestMapping(method=RequestMethod.PUT, value="/")
-    public Character updateCharacter(@RequestParam String userName, @RequestBody Character character)  {
+    public Character updateCharacter(@RequestHeader String userName, @RequestBody Character character)  {
         try {
             return this.characterService.updateCharacter(userName, character);
         } catch (ChallengeServiceException e) {
@@ -68,7 +69,7 @@ public class CharacterController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(method=RequestMethod.DELETE, value="/{id}")
-    public void deleteCharacter(@RequestParam String userName, @PathVariable String id)  {
+    public void deleteCharacter(@RequestHeader String userName, @PathVariable String id)  {
         try {
             this.characterService.deleteCharacter(userName, id);
         } catch (ChallengeServiceException e) {
