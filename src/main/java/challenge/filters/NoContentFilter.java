@@ -20,7 +20,7 @@ import java.io.PrintWriter;
 /**
  * Created by rsanchpa on 01/10/2017.
  */
-@Component
+//@Component
 public class NoContentFilter extends OncePerRequestFilter {
 
     @Override
