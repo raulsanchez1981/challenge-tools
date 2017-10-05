@@ -9,6 +9,8 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.CompoundIndex;
+import org.springframework.data.mongodb.core.index.CompoundIndexes;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -18,7 +20,9 @@ import java.util.List;
 /**
  * Created by cbougeno on 26/09/2017.
  */
-
+@CompoundIndexes({
+    @CompoundIndex(name = "index_name_userCreation", def = "{'name' : 1, 'userCreation' : 1}", unique = true)
+})
 @Document(collection = "character")
 public class Character {
 

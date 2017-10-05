@@ -48,6 +48,7 @@ public class CharacterServiceImpl implements CharacterService {
     @ControlAccessCharacter
     public Character saveCharacter(String userName, Character character) {
         try {
+            character.setId(null);
             character.setUserCreation(userName);
             return this.characterRepository.save(character);
         } catch (DuplicateKeyException e) {
