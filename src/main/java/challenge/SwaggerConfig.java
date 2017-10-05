@@ -27,12 +27,14 @@ public class SwaggerConfig {
     }
 
     private ApiInfo apiInfo() {
+        String description = "Below you can find all the EndPoint and entities that will be necessary for the test.</br>" +
+            "You can use them as many times as you want and perform the tests you need to then use them in your development.</br>" +
+            "You have <b>six operations</b> in total:</br>" +
+            "- Five methods you can do about the characters.</br>" +
+            "- A method for obtaining a list of powers that you can associate with each character.";
         return new ApiInfoBuilder()
             .title("Challenge for Tools Team")
-            .description("A continuación se pueden encontrar todos los EndPoint y entidades que serán necesarios para" +
-                "la realización de la prueba.\n" +
-                "Puedes utilizarlos todas las veces que quieras y realizar las pruebas que necesites para luego usarlos " +
-                "en tu desarrollo.")
+            .description(description)
             .version("1.0")
             .build();
     }
