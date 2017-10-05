@@ -10,7 +10,7 @@ import javax.servlet.Filter;
 /**
  * Created by rsanchpa on 01/10/2017.
  */
-@Configuration
+//@Configuration
 public class RegistrationFilterConfig {
 
     @Bean
