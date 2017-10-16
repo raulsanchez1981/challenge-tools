@@ -126,7 +126,7 @@ public class CharacterController {
         @ApiResponse(code = 404, message = "Not Found"),
         @ApiResponse(code = 500, message = "Internal Server Error")})
     @RequestMapping(method=RequestMethod.PUT, value="/")
-    public Character updateCharacter(@RequestHeader String userName, @RequestBody Character character)  {
+    public Character updateCharacter(@RequestHeader String userName, @Valid @RequestBody Character character, BindingResult bindingResult)  {
         //buildErrorMessages(bindingResult);
         try {
             return this.characterService.updateCharacter(userName, character);
