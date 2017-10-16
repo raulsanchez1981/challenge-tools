@@ -18,6 +18,7 @@ import java.util.List;
  * Created by cbougeno on 26/09/2017.
  */
 
+
 public class CharacterSearch {
 
     @ApiModelProperty(notes = "The Name of the Character", required = true, value = "Super-Heroe", example = "Super-Heroe")

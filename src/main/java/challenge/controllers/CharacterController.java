@@ -5,26 +5,21 @@ import challenge.exception.types.ChallengeControllerException;
 import challenge.exception.types.ChallengeServiceException;
 import challenge.search.CharacterSearch;
 import challenge.services.CharacterService;
-import challenge.utils.ErrorMessages;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.http.HttpStatus;
-import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -87,7 +82,8 @@ public class CharacterController {
             + "\n- **powers**<br>"
             + "\n- **strength** must be filled<br>")
     @RequestMapping(method=RequestMethod.POST, value="/")
-    public Character saveCharacters(@RequestHeader String userName, @RequestBody Character character)  {
+    public Character saveCharacters(@RequestHeader String userName, @Valid @RequestBody Character character, BindingResult bindingResult)  {
+        buildErrorMessages(bindingResult);
         try {
             return this.characterService.saveCharacter(userName, character);
         }catch (ChallengeServiceException e) {
@@ -109,7 +105,8 @@ public class CharacterController {
             + "\n- **powers**<br>"
             + "\n- **strength** must be filled<br>")
     @RequestMapping(method=RequestMethod.PUT, value="/")
-    public Character updateCharacter(@RequestHeader String userName, @RequestBody Character character)  {
+    public Character updateCharacter(@RequestHeader String userName, @Valid @RequestBody Character character, BindingResult bindingResult)  {
+        buildErrorMessages(bindingResult);
         try {
             return this.characterService.updateCharacter(userName, character);
         } catch (ChallengeServiceException e) {
@@ -131,6 +128,17 @@ public class CharacterController {
             this.characterService.deleteCharacter(userName, id);
         } catch (ChallengeServiceException e) {
             throw new ChallengeControllerException(e.getMessage());
+        }
+    }
+
+    private void buildErrorMessages(BindingResult bindingResult) {
+        final StringBuilder builder = new StringBuilder();
+        if (bindingResult.hasErrors()) {
+            for (ObjectError error : bindingResult.getAllErrors()) {
+                builder.append(error.getDefaultMessage());
+                builder.append(System.getProperty("line.separator"));
+            }
+            throw new ChallengeControllerException(builder.toString());
         }
     }
 }

@@ -14,6 +14,9 @@ import org.springframework.data.mongodb.core.index.CompoundIndexes;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -30,21 +33,27 @@ public class Character {
     @ApiModelProperty(notes = "The id of the Character", required = true, hidden = true)
     private String id;
 
+    @NotNull(message = "The 'Name' must be filled")
     @ApiModelProperty(notes = "The Name of the Character", required = true, value = "Super-Heroe", example = "Super-Heroe")
     private String name;
 
+    @NotNull(message = "The 'Alter Ego' must be filled")
     @ApiModelProperty(notes = "The Alter Ego of the Character", required = true, value = "Pepito", example = "Pepito")
     private String alterEgo;
 
     @ApiModelProperty(notes = "The Powers of the Character", required = true)
     private List<String> powers;
 
+    @NotNull(message = "The 'Strength' must be filled")
+    @Max(value = 9, message = "The 'Strength' must be 0-9")
     @ApiModelProperty(notes = "The Strength of the Character", required = true, dataType = "integer", value = "9", example = "9")
     private Integer strength;
 
+    @NotNull(message = "The 'Description' must be filled")
     @ApiModelProperty(notes = "The Description of the Character", required = true, value = "A normal guy with powers", example = "A normal guy with powers")
     private String description;
 
+    @NotNull(message = "The 'Image' must be filled")
     @ApiModelProperty(notes = "The Image's URL of the Character", required = true, value = "http://wheretheimage.es", example = "http://wheretheimage.es")
     private String image;
 
