@@ -7,6 +7,8 @@ import challenge.search.CharacterSearch;
 import challenge.services.CharacterService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
@@ -33,18 +35,23 @@ public class CharacterController {
     @Autowired
     CharacterService characterService;
 
-    @RequestMapping(method=RequestMethod.GET, value="/{id}")
     @ApiOperation(value = "Obtain a Character By Id",
         notes = "The **userName** is a required parameter, the user must exists and must be active.\n\n"
             + "\nThe following validations are applied too:"
             + "\n"
             + "\n- **Id** must be filled<br>",
         response = Character.class)
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "OK"),
+        @ApiResponse(code = 204, message = "No Content"),
+        @ApiResponse(code = 400, message = "Bad Request"),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 404, message = "Not Found")})
+    @RequestMapping(method=RequestMethod.GET, value="/{id}")
     public Character findCharacterById(@RequestHeader String userName, @PathVariable String id)  {
         return this.characterService.obtainCharacterById(userName, id);
     }
 
-    @RequestMapping(method=RequestMethod.POST, value="/search")
     @ApiOperation(value = "Obtain a List of Characters",
         notes = "The **userName** is a required parameter, the user must exists and must be active.\n\n"
             + "\nThe search can be done by the following fields:"
@@ -53,6 +60,14 @@ public class CharacterController {
             + "\n- **description**<br>"
             + "\n- **name**<br>"
             + "\n- **powers**<br>")
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "OK"),
+        @ApiResponse(code = 204, message = "No Content"),
+        @ApiResponse(code = 400, message = "Bad Request"),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 404, message = "Not Found"),
+        @ApiResponse(code = 500, message = "Internal Server Error")})
+    @RequestMapping(method=RequestMethod.POST, value="/search")
     public List<Character> findCharacters(@RequestHeader String userName, @RequestBody CharacterSearch characterSearch)  {
         List<Character> listCharacters;
         try {
@@ -81,6 +96,12 @@ public class CharacterController {
             + "\n- **image** must be filled<br>"
             + "\n- **powers**<br>"
             + "\n- **strength** must be filled<br>")
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Ok"),
+        @ApiResponse(code = 400, message = "Bad Request"),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 404, message = "Not Found"),
+        @ApiResponse(code = 500, message = "Internal Server Error")})
     @RequestMapping(method=RequestMethod.POST, value="/")
     public Character saveCharacters(@RequestHeader String userName, @Valid @RequestBody Character character, BindingResult bindingResult)  {
         buildErrorMessages(bindingResult);
@@ -104,6 +125,13 @@ public class CharacterController {
             + "\n- **image** must be filled<br>"
             + "\n- **powers**<br>"
             + "\n- **strength** must be filled<br>")
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Ok"),
+        @ApiResponse(code = 204, message = "No Content"),
+        @ApiResponse(code = 400, message = "Bad Request"),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 404, message = "Not Found"),
+        @ApiResponse(code = 500, message = "Internal Server Error")})
     @RequestMapping(method=RequestMethod.PUT, value="/")
     public Character updateCharacter(@RequestHeader String userName, @Valid @RequestBody Character character, BindingResult bindingResult)  {
         buildErrorMessages(bindingResult);
@@ -121,6 +149,12 @@ public class CharacterController {
             + "\nThe following validations are applied too:"
             + "\n"
             + "\n- **Id** must be filled<br>")
+    @ApiResponses(value = {
+        @ApiResponse(code = 204, message = "No Content"),
+        @ApiResponse(code = 400, message = "Bad Request"),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 404, message = "Not Found"),
+        @ApiResponse(code = 500, message = "Internal Server Error")})
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(method=RequestMethod.DELETE, value="/{id}")
     public void deleteCharacter(@RequestHeader String userName, @PathVariable String id)  {

@@ -18,6 +18,7 @@ public class SwaggerConfig {
     @Bean
     public Docket newsApi() {
         return new Docket(DocumentationType.SWAGGER_2)
+            .useDefaultResponseMessages(false)
             .groupName("challenge")
             .apiInfo(apiInfo())
             .select()
