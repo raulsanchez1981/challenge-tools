@@ -47,7 +47,7 @@ public class CharacterController {
     @RequestMapping(method=RequestMethod.POST, value="/search")
     @ApiOperation(value = "Obtain a List of Characters",
         notes = "The **userName** is a required parameter, the user must exists and must be active.\n\n"
-            + "\nThe following fields are optional:"
+            + "\nThe search can be done by the following fields:"
             + "\n"
             + "\n- **alterEgo**<br>"
             + "\n- **description**<br>"
