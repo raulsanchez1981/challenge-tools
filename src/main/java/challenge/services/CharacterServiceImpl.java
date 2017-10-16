@@ -78,6 +78,9 @@ public class CharacterServiceImpl implements CharacterService {
     @ControlAccessCharacter
     public void deleteCharacter(String userName, String id) {
         Character characterOld = this.characterRepository.findOne(id);
+        if (null == characterOld) {
+            throw new ChallengeServiceException(errorMessages.getProperty(ErrorCodes.CHARACTER_NOT_FOUND));
+        }
         if (!userName.equals(characterOld.getUserCreation())){
             throw new ChallengeServiceException(errorMessages.getProperty(ErrorCodes.NOT_CREATOR_DEL));
         }

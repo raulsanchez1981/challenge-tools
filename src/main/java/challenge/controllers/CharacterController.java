@@ -118,23 +118,16 @@ public class CharacterController {
             "The **userName** is a required parameter, the user must exists and must be active.\n\n"
             + "\nThe following validations are applied too:"
             + "\n"
-            + "\n- **name** must be filled<br>"
-            + "\n- **alterEgo** must be filled<br>"
-            + "\n- **description** must be filled<br>"
-            + "\n- **birthDate**<br>"
-            + "\n- **image** must be filled<br>"
-            + "\n- **powers**<br>"
-            + "\n- **strength** must be filled<br>")
+            + "\n- **Id** must be filled<br>")
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "Ok"),
-        @ApiResponse(code = 204, message = "No Content"),
         @ApiResponse(code = 400, message = "Bad Request"),
         @ApiResponse(code = 401, message = "Unauthorized"),
         @ApiResponse(code = 404, message = "Not Found"),
         @ApiResponse(code = 500, message = "Internal Server Error")})
     @RequestMapping(method=RequestMethod.PUT, value="/")
-    public Character updateCharacter(@RequestHeader String userName, @Valid @RequestBody Character character, BindingResult bindingResult)  {
-        buildErrorMessages(bindingResult);
+    public Character updateCharacter(@RequestHeader String userName, @RequestBody Character character)  {
+        //buildErrorMessages(bindingResult);
         try {
             return this.characterService.updateCharacter(userName, character);
         } catch (ChallengeServiceException e) {
@@ -150,7 +143,7 @@ public class CharacterController {
             + "\n"
             + "\n- **Id** must be filled<br>")
     @ApiResponses(value = {
-        @ApiResponse(code = 204, message = "No Content"),
+        @ApiResponse(code = 204, message = "No Content", response = Void.class),
         @ApiResponse(code = 400, message = "Bad Request"),
         @ApiResponse(code = 401, message = "Unauthorized"),
         @ApiResponse(code = 404, message = "Not Found"),
