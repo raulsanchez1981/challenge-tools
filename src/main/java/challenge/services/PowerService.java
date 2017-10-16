@@ -7,5 +7,5 @@ import java.util.List;
  */
 public interface PowerService {
 
-    List<String> obtainAllPowers();
+    List<String> obtainAllPowers(String userName);
 }

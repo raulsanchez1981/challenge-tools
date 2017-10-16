@@ -6,6 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,7 +27,7 @@ public class PowerController {
     @RequestMapping(method= RequestMethod.GET, value="/search")
     @ApiOperation(value = "Obtain all possible Powers",
         notes = "The **userName** is a required parameter, the user must exists and must be active.")
-    public List<String> findPowers()  {
-        return this.powerService.obtainAllPowers();
+    public List<String> findPowers(@RequestHeader String userName)  {
+        return this.powerService.obtainAllPowers(userName);
     }
 }

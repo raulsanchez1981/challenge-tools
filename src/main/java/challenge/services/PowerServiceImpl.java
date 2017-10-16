@@ -1,6 +1,7 @@
 package challenge.services;
 
 import challenge.enums.Power;
+import challenge.security.ControlAccessCharacter;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,8 +13,10 @@ import java.util.stream.Stream;
  */
 @Service
 public class PowerServiceImpl implements PowerService {
+
     @Override
-    public List<String> obtainAllPowers() {
+    @ControlAccessCharacter
+    public List<String> obtainAllPowers(String userName) {
         return Stream.of(Power.values()).map(Power::getValue).collect(Collectors.toList());
     }
 }
